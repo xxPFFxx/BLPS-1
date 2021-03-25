@@ -12,8 +12,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-import it.sauronsoftware.jave.InputFormatException;
-import it.sauronsoftware.jave.MultimediaInfo;
+//import it.sauronsoftware.jave.InputFormatException;
+//import it.sauronsoftware.jave.MultimediaInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -21,8 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import it.sauronsoftware.jave.Encoder;
-import it.sauronsoftware.jave.EncoderException;
+//import it.sauronsoftware.jave.Encoder;
+//import it.sauronsoftware.jave.EncoderException;
 
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -56,23 +56,25 @@ public class FileSystemStorageService implements StorageService {
 					.normalize().toAbsolutePath();
 
 			String mimeType = URLConnection.guessContentTypeFromName(String.valueOf(destinationFile));
-			if(!(mimeType != null && mimeType.startsWith("video"))){
+			System.out.println(mimeType);
+//			if(!(mimeType != null && mimeType.startsWith("video"))){
+			if(mimeType != null && !mimeType.startsWith("video")){
 				throw new StorageException(
 						"THIS IS NOT A VIDEO, PLZ CALL A DOCTOR");
 			}
 
-			File file1 = convertMultiPartToFile(file);
-			Encoder encoder = new Encoder();
-			MultimediaInfo m = encoder.getInfo(file1);
-			long ls = m.getDuration();
-			int second = (int) (ls / 1000);
-			System.out.println("The length of this video is:" + second + "second!");
-			System.out.println(Math.round(second/60.0 * 100.0) / 100.0);
-			if (Math.round(second/60.0 * 100.0) / 100.0 > 20){
-				throw new StorageException(
-					"Длина видео: " + Math.round(second/60.0 * 100.0) / 100.0 + " минут, должна быть меньше 20!"
-				);
-			}
+//			File file1 = convertMultiPartToFile(file);
+//			Encoder encoder = new Encoder();
+//			MultimediaInfo m = encoder.getInfo(file1);
+//			long ls = m.getDuration();
+//			int second = (int) (ls / 1000);
+//			System.out.println("The length of this video is:" + second + "second!");
+//			System.out.println(Math.round(second/60.0 * 100.0) / 100.0);
+//			if (Math.round(second/60.0 * 100.0) / 100.0 > 20){
+//				throw new StorageException(
+//					"Длина видео: " + Math.round(second/60.0 * 100.0) / 100.0 + " минут, должна быть меньше 20!"
+//				);
+//			}
 
 			if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
 				// This is a security check
@@ -86,11 +88,12 @@ public class FileSystemStorageService implements StorageService {
 		}
 		catch (IOException e) {
 			throw new StorageException("Failed to store file.", e);
-		} catch (InputFormatException e) {
-			e.printStackTrace();
-		} catch (EncoderException e) {
-			e.printStackTrace();
 		}
+//		catch (InputFormatException e) {
+//			e.printStackTrace();
+//		} catch (EncoderException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override

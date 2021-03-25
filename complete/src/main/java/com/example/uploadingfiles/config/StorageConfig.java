@@ -14,12 +14,12 @@ public class StorageConfig {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-//        dataSourceBuilder.url("jdbc:postgresql://localhost:5431/studs");
-//        dataSourceBuilder.username("s265096");
-//        dataSourceBuilder.password("vrm232");
-        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/postgres");
-        dataSourceBuilder.username("postgres");
-        dataSourceBuilder.password("Postgreshehmda");
+        dataSourceBuilder.url("jdbc:postgresql://pg:5432/studs");
+        dataSourceBuilder.username("s265096");
+        dataSourceBuilder.password("vrm232");
+//        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/postgres");
+//        dataSourceBuilder.username("postgres");
+//        dataSourceBuilder.password("Postgreshehmda");
 
         return dataSourceBuilder.build();
     }
