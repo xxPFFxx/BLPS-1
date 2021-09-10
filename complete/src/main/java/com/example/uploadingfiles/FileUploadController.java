@@ -80,8 +80,8 @@ public class FileUploadController {
 			storageService.store(file);
 			String generatedString = generateLink(10);
 			//TODO проверка, нет ли такой линки уже
-
-			return new ResponseEntity<>(videoInfoService.saveVideoInfo(null, null, null, null, null, generatedString, principal.getName()),HttpStatus.OK);
+			VideoInfo videoInfo = new VideoInfo(null, null, null, null, null, generatedString, 0, null, Boolean.FALSE);
+			return new ResponseEntity<>(videoInfoService.saveVideoInfo(videoInfo, principal.getName()),HttpStatus.OK);
 		}
 
 	public String generateLink(int length){

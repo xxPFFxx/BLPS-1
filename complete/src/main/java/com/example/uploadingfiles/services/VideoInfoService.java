@@ -23,9 +23,9 @@ public class VideoInfoService {
         this.userRepository = userRepository;
     }
 
-    public VideoInfo saveVideoInfo(String videoName, String videoDesc, String category, String releaseTime, String releaseDate, String link, String username){
+    public VideoInfo saveVideoInfo(VideoInfo videoInfo, String username){
         User user = userRepository.findByUsername(username);
-        VideoInfo videoInfo = new VideoInfo(videoName, videoDesc, category, releaseTime, releaseDate, link, 0, user, Boolean.FALSE);
+        videoInfo.setUser(user);
         return videoInfoRepository.save(videoInfo);
     }
 
@@ -33,8 +33,8 @@ public class VideoInfoService {
         return videoInfoRepository.countVideoInfosByLink(link) > 0;
     }
 
-    public int updateVideoInfo(String videoName,String videoDesc,String category,String releaseTime,String releaseDate,String link){
-        return videoInfoRepository.updateVideoInfo(videoName, videoDesc, category, releaseTime, releaseDate, link);
+    public int updateVideoInfo(VideoInfo videoInfo){
+        return videoInfoRepository.updateVideoInfo(videoInfo);
     }
 
     public VideoInfo getVideo(String link) throws VideoInfoNotFoundException {

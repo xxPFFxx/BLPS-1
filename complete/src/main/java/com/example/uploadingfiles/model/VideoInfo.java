@@ -58,6 +58,15 @@ public class VideoInfo {
         this.popular = popular;
     }
 
+    public VideoInfo(String name, String desc, String category, String releasetime, String releasedate, String link) {
+        this.link = link;
+        this.name = name;
+        this.desc = desc;
+        this.category = category;
+        this.releasetime = releasetime;
+        this.releasedate = releasedate;
+    }
+
     public VideoInfo() {
 
     }

@@ -37,8 +37,9 @@ public class VideoController {
     public ResponseEntity<?> uploadVideoInfo(@RequestParam String videoName, @RequestParam String videoDesc,
                                              @RequestParam String category, @RequestParam String releaseTime,
                                              @RequestParam String releaseDate, @RequestParam String link, Principal principal){
+        VideoInfo videoInfo = new VideoInfo(videoName, videoDesc, category, releaseTime, releaseDate, link);
         if (videoInfoService.checkVideoInfo(link)){
-            return new ResponseEntity<>(videoInfoService.updateVideoInfo(videoName, videoDesc, category, releaseTime, releaseDate, link),HttpStatus.OK);
+            return new ResponseEntity<>(videoInfoService.updateVideoInfo(videoInfo),HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>("Видео не найдено", HttpStatus.BAD_REQUEST);

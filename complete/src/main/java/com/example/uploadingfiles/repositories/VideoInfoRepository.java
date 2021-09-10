@@ -5,6 +5,7 @@ import com.example.uploadingfiles.model.VideoInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +19,10 @@ public interface VideoInfoRepository extends JpaRepository<VideoInfo, Long> {
 
     @Transactional
     @Modifying
-    @Query("update VideoInfo v set v.name=:videoName, v.desc=:videoDesc, v.category=:category, v.releasetime=:releaseTime, v.releasedate=:releaseDate where v.link= :link")
-    int updateVideoInfo(String videoName, String videoDesc, String category, String releaseTime, String releaseDate, String link);
+    @Query("update VideoInfo v set v.name=:#{#videoinfo.name}, v.desc=:#{#videoinfo.desc}, " +
+            "v.category=:#{#videoinfo.category}, v.releasetime=:#{#videoinfo.releasetime}," +
+            " v.releasedate=:#{#videoinfo.releasedate} where v.link= :#{#videoinfo.link}")
+    int updateVideoInfo(@Param("videoinfo") VideoInfo videoInfo);
 
     VideoInfo findVideoInfoByLink(String link);
 
