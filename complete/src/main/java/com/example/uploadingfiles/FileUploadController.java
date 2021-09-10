@@ -78,19 +78,22 @@ public class FileUploadController {
 	public ResponseEntity<?> handleFileUpload(Principal principal, @RequestParam("file") MultipartFile file
 									  ) throws IOException {
 			storageService.store(file);
-			int leftLimit = 97; // letter 'a'
-			int rightLimit = 122; // letter 'z'
-			int targetStringLength = 10;
-			Random random = new Random();
-			String generatedString = random.ints(leftLimit, rightLimit + 1)
-					.limit(targetStringLength)
-					.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-					.toString();
+			String generatedString = generateLink(10);
 			//TODO проверка, нет ли такой линки уже
 
 			return new ResponseEntity<>(videoInfoService.saveVideoInfo(null, null, null, null, null, generatedString, principal.getName()),HttpStatus.OK);
 		}
 
+	public String generateLink(int length){
+		int leftLimit = 97; // letter 'a'
+		int rightLimit = 122; // letter 'z'
+		Random random = new Random();
+		String generatedString = random.ints(leftLimit, rightLimit + 1)
+				.limit(length)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+				.toString();
+		return generatedString;
+	}
 	@GetMapping(value = "/checkUser", produces = "application/json")
 	public Map<String, String> checkUser(@RequestParam String login, Model model){
 			HashMap<String, String> map = new HashMap<>();
