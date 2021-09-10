@@ -7,9 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.model.VideoInfo;
-import com.example.uploadingfiles.security.UserPrincipal;
 import com.example.uploadingfiles.services.UserService;
 import com.example.uploadingfiles.services.VideoInfoService;
 import com.example.uploadingfiles.exceptions.StorageException;
@@ -23,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.uploadingfiles.exceptions.StorageFileNotFoundException;
 import com.example.uploadingfiles.util.StorageService;
 
@@ -49,8 +46,6 @@ public class FileUploadController {
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 						"serveFile", path.getFileName().toString()).build().toUri().toString())
 				.collect(Collectors.toList()));
-
-		//return "infoAboutVideo";
 		return "uploadForm";
 	}
 
@@ -61,8 +56,6 @@ public class FileUploadController {
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 						"serveFile", path.getFileName().toString()).build().toUri().toString())
 				.collect(Collectors.toList()));
-
-		//return "infoAboutVideo";
 		return "infoAboutVideo";
 	}
 

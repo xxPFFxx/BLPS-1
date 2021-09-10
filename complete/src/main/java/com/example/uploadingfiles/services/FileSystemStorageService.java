@@ -8,8 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-//import it.sauronsoftware.jave.InputFormatException;
-//import it.sauronsoftware.jave.MultimediaInfo;
 import com.example.uploadingfiles.exceptions.StorageException;
 import com.example.uploadingfiles.exceptions.StorageFileNotFoundException;
 import com.example.uploadingfiles.util.StorageProperties;
@@ -20,8 +18,6 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
-//import it.sauronsoftware.jave.Encoder;
-//import it.sauronsoftware.jave.EncoderException;
 
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -31,15 +27,6 @@ public class FileSystemStorageService implements StorageService {
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
 		this.rootLocation = Paths.get(properties.getLocation());
-	}
-
-	private File convertMultiPartToFile(MultipartFile file ) throws IOException
-	{
-		File convFile = new File( file.getOriginalFilename() );
-		FileOutputStream fos = new FileOutputStream( convFile );
-		fos.write( file.getBytes() );
-		fos.close();
-		return convFile;
 	}
 
 	@Override
@@ -82,18 +69,11 @@ public class FileSystemStorageService implements StorageService {
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
-				//Files.copy(inputStream, destinationFile,
-				//	StandardCopyOption.REPLACE_EXISTING);
 			}
 		}
 		catch (IOException e) {
 			throw new StorageException("Failed to store file.", e);
 		}
-//		catch (InputFormatException e) {
-//			e.printStackTrace();
-//		} catch (EncoderException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	@Override

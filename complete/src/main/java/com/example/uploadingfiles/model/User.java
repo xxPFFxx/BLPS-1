@@ -1,7 +1,6 @@
 package com.example.uploadingfiles.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -33,11 +32,9 @@ public class User {
 
     private String permissions = "";
 
-//    @JsonManagedReference(value = "user-videoinfo")
     @OneToMany(mappedBy = "user")
     private Set<VideoInfo> videoInfos;
 
-//    @JsonManagedReference(value = "user-comment")
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments;
 

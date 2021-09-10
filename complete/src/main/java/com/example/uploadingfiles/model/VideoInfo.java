@@ -1,8 +1,6 @@
 package com.example.uploadingfiles.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -31,12 +29,10 @@ public class VideoInfo {
     private String releasedate;
     @Column(name = "views")
     private Integer views;
-//    @JsonBackReference(value = "user-videoinfo")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//    @JsonManagedReference(value = "videoinfo-comment")
     @OneToMany(mappedBy = "videoinfo")
     private Set<Comment> comments;
 

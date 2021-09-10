@@ -2,11 +2,9 @@ package com.example.uploadingfiles;
 
 import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.services.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

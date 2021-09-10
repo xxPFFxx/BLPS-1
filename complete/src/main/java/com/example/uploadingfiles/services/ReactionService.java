@@ -4,7 +4,6 @@ import com.example.uploadingfiles.model.Reaction;
 import com.example.uploadingfiles.model.ReactionType;
 import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.model.VideoInfo;
-import com.example.uploadingfiles.repositories.CommentRepository;
 import com.example.uploadingfiles.repositories.ReactionRepository;
 import com.example.uploadingfiles.repositories.UserRepository;
 import com.example.uploadingfiles.repositories.VideoInfoRepository;
@@ -13,13 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReactionService {
 
-    private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final VideoInfoRepository videoInfoRepository;
     private final ReactionRepository reactionRepository;
 
-    public ReactionService(CommentRepository commentRepository, UserRepository userRepository, VideoInfoRepository videoInfoRepository, ReactionRepository reactionRepository) {
-        this.commentRepository = commentRepository;
+    public ReactionService(UserRepository userRepository, VideoInfoRepository videoInfoRepository, ReactionRepository reactionRepository) {
         this.userRepository = userRepository;
         this.videoInfoRepository = videoInfoRepository;
         this.reactionRepository = reactionRepository;

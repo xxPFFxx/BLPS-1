@@ -1,6 +1,5 @@
 package com.example.uploadingfiles.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -16,12 +15,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @JsonBackReference(value = "user-comment")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//    @JsonBackReference(value = "videoinfo-comment")
     @ManyToOne
     @JoinColumn(name = "videoinfo_id", nullable = false)
     private VideoInfo videoinfo;

@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class VideoController {
@@ -24,9 +22,6 @@ public class VideoController {
         this.storageService = storageService;
         this.videoInfoService = videoInfoService;
     }
-
-    // http://localhost:8080/addVideoInfo?videoName=hi&videoDesc=desc&category=cat&releaseTime=timeee&releaseDate=2021-03-03
-
 
     @GetMapping(value = "/getVideo", produces = "application/json")
     public VideoInfo getVideo(@RequestParam String link) throws VideoInfoNotFoundException {

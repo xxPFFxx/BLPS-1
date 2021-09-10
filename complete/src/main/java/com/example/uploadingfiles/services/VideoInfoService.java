@@ -5,7 +5,6 @@ import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.model.VideoInfo;
 import com.example.uploadingfiles.repositories.UserRepository;
 import com.example.uploadingfiles.repositories.VideoInfoRepository;
-import com.example.uploadingfiles.security.UserPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

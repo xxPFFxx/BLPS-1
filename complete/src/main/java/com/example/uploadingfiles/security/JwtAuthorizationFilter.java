@@ -1,7 +1,6 @@
 package com.example.uploadingfiles.security;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;

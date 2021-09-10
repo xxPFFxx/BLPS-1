@@ -1,23 +1,11 @@
 package com.example.uploadingfiles.util;
 
-import com.example.uploadingfiles.model.User;
 import com.example.uploadingfiles.repositories.UserRepository;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.sun.xml.txw2.annotation.XmlNamespace;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class DbInit implements CommandLineRunner {
@@ -67,7 +55,6 @@ public class DbInit implements CommandLineRunner {
                 .replaceAll("<roleList>.*?</roleList>", "").replaceAll(">\\s{10,}<", ">\n<") + "</users>";
 
         FileWriter writer = new FileWriter("complete\\src\\main\\java\\com\\example\\uploadingfiles\\security\\security.xml", false);
-        //FileWriter writer = new FileWriter("complete/src/main/resources/security.xml", false);
         writer.write(xmlString);
         writer.close();
     }
