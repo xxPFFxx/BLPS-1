@@ -30,6 +30,10 @@ public class CommentController {
         this.userService = userService;
     }
 
+    /*
+    Объект videoInfo создается для проверки корректности ссылки, если она неправильная, то будет брошено
+    VideoInfoNotFoundException, в ином случае будет выполняться как надо
+     */
     @PostMapping(value = "/addComment", produces = "application/json")
     public Comment addComment(@RequestParam String text, @RequestParam String link, Principal principal) throws VideoInfoNotFoundException {
         VideoInfo videoInfo = videoInfoService.getVideo(link);

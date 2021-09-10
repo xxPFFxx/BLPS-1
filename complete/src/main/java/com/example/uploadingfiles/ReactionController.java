@@ -32,12 +32,20 @@ public class ReactionController {
         this.reactionService = reactionService;
     }
 
+    /*
+    Объект videoInfo создается для проверки корректности ссылки, если она неправильная, то будет брошено
+    VideoInfoNotFoundException, в ином случае будет выполняться как надо
+     */
     @PostMapping(value = "/like/{link}", produces = "application/json")
     public Reaction likeVideo(@PathVariable String link, Principal principal) throws VideoInfoNotFoundException {
         VideoInfo videoInfo = videoInfoService.getVideo(link);
         return reactionService.handleReaction(principal.getName(), link, ReactionType.LIKE);
     }
 
+    /*
+    Объект videoInfo создается для проверки корректности ссылки, если она неправильная, то будет брошено
+    VideoInfoNotFoundException, в ином случае будет выполняться как надо
+     */
     @PostMapping(value = "/dislike/{link}", produces = "application/json")
     public Reaction dislikeVideo(@PathVariable String link, Principal principal) throws VideoInfoNotFoundException {
         VideoInfo videoInfo = videoInfoService.getVideo(link);

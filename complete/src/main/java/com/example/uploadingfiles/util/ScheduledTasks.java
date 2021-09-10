@@ -19,8 +19,12 @@ public class ScheduledTasks {
         this.videoInfoService = videoInfoService;
     }
 
+    /*
+    Каждую минуту (cron = "0 * * * * *") проверяет, не стало ли какое-то видео популярным (набрало хотя бы 10 просмотров),
+    и обновляет статус для видео, выполнивших это условие
+     */
     @Scheduled(cron = "0 * * * * *")
-    public void reportCurrentTime() {
+    public void updateStatusOnVideos() {
         videoInfoService.setPopularStatus();
 //        log.info("The time is now {}", dateFormat.format(new Date()));
     }

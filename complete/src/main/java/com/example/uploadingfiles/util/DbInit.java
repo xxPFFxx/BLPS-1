@@ -29,6 +29,10 @@ public class DbInit implements CommandLineRunner {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /*
+    Раскомментировать стоит, если нужно очистить предыдущих пользователей и заполнить базу подготовленными
+    заранее, в других случаях должно оставаться закомментированным
+     */
     @Override
     public void run(String... args) throws IOException {
         // Delete all
@@ -52,6 +56,10 @@ public class DbInit implements CommandLineRunner {
 //        storeUsersInFile(xmlString);
     }
 
+    /*  Сохраняет информацию о пользователях в файл security.xml, на вход получает строку, которая генерируется
+        библиотекой XML и убирает ненужные теги (permissionList и roleList), добавляя нужные (users), чтобы потом
+        работало чтение этих данных из файла корректно
+    */
     public static void storeUsersInFile(String xmlString) throws IOException {
         xmlString = "<users>\n" + xmlString.replaceAll("<permissionList/>", "")
                 .replaceAll("<roleList>\\s", "")
